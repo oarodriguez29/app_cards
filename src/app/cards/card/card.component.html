@@ -1,1 +1,23 @@
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
+<div class="row" class="title">
+    <h1>{{title}} <mat-icon class="recent_actors" aria-hidden="false" aria-label="recent_actors" fontIcon="recent_actors"></mat-icon></h1>    
+</div>
+<div class="cards-container">
+    <mat-card class="card" appearance="outlined" *ngFor="let item of paginatedItems">
+        <mat-card-header>
+        <mat-card-title-group>
+        <mat-card-title><h4>{{ item.name }}</h4></mat-card-title>
+        <mat-card-subtitle>{{ item.species }}</mat-card-subtitle>
+        <img mat-card-lg-image [src]="item.image" alt="{{ item.name }}">
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Status: {{item.status}} </p>
+        <p> Gender: {{item.gender}} </p>
+        <p> Location: {{ item.location.name}} </p>
+    </mat-card-content>
+    </mat-card>
+</div>
+<div class="row paginator">
+    <mat-paginator [length]="items.length" [pageSize]="pageSize" [pageSizeOptions]="[3,6,9,12]" (page)="onPageChange($event)">
+    </mat-paginator>
+</div>
